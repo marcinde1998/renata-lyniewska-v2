@@ -1,0 +1,15 @@
+.mainNav {
+    display: flex;
+    
+}
+
+.mainNav ul {
+    list-style-type: none;
+}
+
+.mainNav ul li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
