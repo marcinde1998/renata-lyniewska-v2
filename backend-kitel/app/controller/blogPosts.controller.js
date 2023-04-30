@@ -26,16 +26,6 @@ function blogPostAdd(data, cb) {
 
 // DeleteFromBlogPostList
 
-// function blogPostDelete(id, cb) {
-//     BlogPost.deleteOne({ _id: id }, function (err, post) {
-//         if (err) {
-//             cb(err);
-//         } else {
-//             cb(null, post);
-//         }
-//     });
-// }
-
 function blogPostDelete(id, cb) {
     BlogPost.findById(id).deleteOne().then(function (err, post) {
         if (err) {

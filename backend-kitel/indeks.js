@@ -54,7 +54,7 @@ app.post('/add/post/to/blog/posts', function (req, res) { //AddPostToBlogPosts
     })
 });
 
-app.delete('/delete/:id', function (req, res) { //DeleteFromBlogPostList
+app.delete('/delete/post/from/posts/list/:id', function (req, res) { //DeleteFromBlogPostList
 
     blogPost.blogPostDelete(req.params.id, function (err, data) {
         if (err) {

@@ -1,8 +1,14 @@
 import axios from "axios";
 
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddPost(props) {
+
+    function refreshPage() {
+        window.location.reload(false);
+    }
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         title: '',
         content: ''
@@ -25,16 +31,17 @@ function AddPost(props) {
             title: formData.title,
             content: formData.content
         });
+        refreshPage();
     }
 
     const deletePost = (id) => {
-        console.log(id);
-        axios.delete('http://localhost:8080/delete/' + id, {
+        axios.delete('http://localhost:8080/delete/post/from/posts/list/' + id, {
         }).then((res) => {
             console.log(res.data);
         }).catch((error) => {
             console.error(error);
         });
+        refreshPage();
     }
 
 
@@ -62,9 +69,7 @@ function AddPost(props) {
                                     let id = blogPost._id;
                                     deletePost(id);
                                 }}>Usuń</button>
-                                <button onClick={() => {
-                                    console.log(blogPost._id);
-                                }}>Klik!</button>
+                                <button onClick={() => window.location.reload()}>Klik!</button>
                             </div>
                         )
                     })}
