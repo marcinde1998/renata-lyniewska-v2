@@ -4,10 +4,10 @@ const BlogPost = require('../model/BlogPost');
 
 function postsList(cb) {
     BlogPost.find().lean().then((blogPosts) => {
-            cb(null, blogPosts)
-        }).catch((err)=>{
-            cb(err);
-        })    
+        cb(null, blogPosts)
+    }).catch((err) => {
+        cb(err);
+    })
 };
 
 // AddPostToBlogPosts
@@ -15,10 +15,10 @@ function postsList(cb) {
 function blogPostAdd(data, cb) {
     let newPost = new BlogPost(data)
 
-    newPost.save().then(function(err, post) {
-        if(err) {
+    newPost.save().then(function (err, post) {
+        if (err) {
             cb(err);
-        } else { 
+        } else {
             cb(null, post);
         }
     })
@@ -26,18 +26,41 @@ function blogPostAdd(data, cb) {
 
 // DeleteFromBlogPostList
 
+// function blogPostDelete(id, cb) {
+//     BlogPost.deleteOne({ _id: id }, function (err, post) {
+//         if (err) {
+//             cb(err);
+//         } else {
+//             cb(null, post);
+//         }
+//     });
+// }
+
 function blogPostDelete(id, cb) {
-    BlogPost.deleteOne().then({_id: id},function(err, post) {
+    BlogPost.findById(id).deleteOne().then(function (err, post) {
         if (err) {
-            cb(err);
+            cb(err)
         } else {
-            cb(null, post);
+            cb(null, post)
         }
-    });
+    })
+}
+
+// ShowPostById
+
+function getOnePost(id, cb) {
+    BlogPost.findById(id).populate().then(function (err, post) {
+        if (err) {
+            cb(err)
+        } else {
+            cb(null, post)
+        }
+    })
 }
 
 module.exports = {
     postsList: postsList,
     blogPostAdd: blogPostAdd,
-    blogPostDelete: blogPostDelete
+    blogPostDelete: blogPostDelete,
+    getOnePost: getOnePost
 }

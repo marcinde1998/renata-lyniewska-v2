@@ -1,12 +1,8 @@
 import axios from "axios";
 
-
-import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 
 function AddPost(props) {
-    const { id } = useParams();
     const [formData, setFormData] = useState({
         title: '',
         content: ''
@@ -31,10 +27,9 @@ function AddPost(props) {
         });
     }
 
-    const navigate = useNavigate();
     const deletePost = (id) => {
-        axios.delete('http://localhost:8080/post/delete/from/postslist/' + id, {
-            post_id: id
+        console.log(id);
+        axios.delete('http://localhost:8080/delete/' + id, {
         }).then((res) => {
             console.log(res.data);
         }).catch((error) => {
@@ -64,9 +59,12 @@ function AddPost(props) {
                                 <div>{blogPost.title}</div>
                                 <div>{blogPost.content}</div>
                                 <button onClick={() => {
+                                    let id = blogPost._id;
                                     deletePost(id);
                                 }}>Usuń</button>
-                                <button>Edytuj posta</button>
+                                <button onClick={() => {
+                                    console.log(blogPost._id);
+                                }}>Klik!</button>
                             </div>
                         )
                     })}

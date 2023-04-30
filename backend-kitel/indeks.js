@@ -8,7 +8,7 @@ const blogPost = require('./app/controller/blogPosts.controller');
 const users = require('./app/controller/users.controller');
 
 //LoginSegment
-app.get('/show/users/moderator', function (req, res) { 
+app.get('/show/users/moderator', function (req, res) {
 
     users.userPass(function (err, users) {
 
@@ -19,6 +19,17 @@ app.get('/show/users/moderator', function (req, res) {
 
 
 //BlogPosts
+
+app.get('/post/:id', function (req, res) { //ShowPostByID
+
+    blogPost.getOnePost(req.params.id, function (err, post) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(post);
+        }
+    })
+});
 
 app.get('/show/blog/posts', function (req, res) { //ShowAllBlogPosts
 
@@ -43,10 +54,10 @@ app.post('/add/post/to/blog/posts', function (req, res) { //AddPostToBlogPosts
     })
 });
 
-app.delete('/post/delete/from/postslist/:id', function(req, res){ //DeleteFromBlogPostList
-     
-    blogPost.blogPostDelete(req.params.id, function(err, data){
-        if(err) {
+app.delete('/delete/:id', function (req, res) { //DeleteFromBlogPostList
+
+    blogPost.blogPostDelete(req.params.id, function (err, data) {
+        if (err) {
             console.log(err);
         } else {
             res.json(data);
