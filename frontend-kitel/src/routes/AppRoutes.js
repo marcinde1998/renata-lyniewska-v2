@@ -1,4 +1,3 @@
-import './AppRoutes.css';
 import { Route, Routes } from 'react-router-dom';
 
 import axios from 'axios';
