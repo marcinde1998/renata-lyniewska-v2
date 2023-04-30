@@ -1,5 +1,5 @@
 import './App.css';
-import AppNav from './components/AppNav';
+import AppNav from './components/appNav/AppNav';
 import AppRoutes from './routes/AppRoutes';
 
 function App() {

@@ -3,7 +3,7 @@ import view1 from './view1.JPG';
 import view2 from './view2.JPG';
 import view3 from './view3.JPG';
 
-
+import './Carousel.css';
 import Carousel from 'react-bootstrap/Carousel';
 
 function IndividualIntervalsExample() {
