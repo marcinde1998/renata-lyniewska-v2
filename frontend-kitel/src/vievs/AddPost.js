@@ -1,14 +1,12 @@
 import axios from "axios";
-
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function AddPost(props) {
 
     function refreshPage() {
         window.location.reload(false);
     }
-    const navigate = useNavigate();
+    
     const [formData, setFormData] = useState({
         title: '',
         content: ''
@@ -32,7 +30,7 @@ function AddPost(props) {
             content: formData.content
         });
         refreshPage();
-    }
+    };
 
     const deletePost = (id) => {
         axios.delete('http://localhost:8080/delete/post/from/posts/list/' + id, {
@@ -42,7 +40,7 @@ function AddPost(props) {
             console.error(error);
         });
         refreshPage();
-    }
+    };
 
 
 
@@ -53,7 +51,7 @@ function AddPost(props) {
                 <label htmlFor="title">Tytuł</label>
                 <input type="text" name="title" id="title" value={formData.title} onChange={handleInputChange} required></input>
                 <label htmlFor="content">Treść posta</label>
-                <input type="text" name="content" id="content" value={formData.content} onChange={handleInputChange} required></input>
+                <textarea maxLength="" name="content" id="content" value={formData.content} onChange={handleInputChange} required></textarea>
                 <input type="submit" value="Dodaj" className="btn"></input>
             </form>
 

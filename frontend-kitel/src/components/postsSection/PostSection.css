@@ -1,0 +1,15 @@
+.postSectionContainer {
+    width: 90%;
+    justify-content: center;
+    margin: auto;
+}
+
+.postSectionContainer .post {
+    width: 50%;
+}
+
+.postSectionContainer .post .postContent {
+    background-color: aliceblue;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
